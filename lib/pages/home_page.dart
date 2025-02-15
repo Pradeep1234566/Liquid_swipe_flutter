@@ -6,24 +6,21 @@ class MyHomePage extends StatelessWidget {
 
   final pages = [
     Container(
-      color: Colors.blue,
+      color: Colors.green,
       child: Center(
-        child:
-            Text("Page 1", style: TextStyle(fontSize: 24, color: Colors.white)),
+        child: Image.asset('assets/images/test1.jpg'),
       ),
     ),
     Container(
       color: Colors.red,
       child: Center(
-        child:
-            Text("Page 2", style: TextStyle(fontSize: 24, color: Colors.white)),
+        child: Image.asset('assets/images/test2.jpg'),
       ),
     ),
     Container(
-      color: Colors.green,
+      color: Colors.amber,
       child: Center(
-        child:
-            Text("Page 3", style: TextStyle(fontSize: 24, color: Colors.white)),
+        child: Image.asset('assets/images/test3.jpg'),
       ),
     ),
   ];
@@ -34,7 +31,8 @@ class MyHomePage extends StatelessWidget {
       body: LiquidSwipe(
         pages: pages,
         enableLoop: true,
-        fullTransitionValue: 800,
+        fullTransitionValue: 300,
+        enableSideReveal: true,
         slideIconWidget: Icon(Icons.arrow_back_ios, color: Colors.white),
         waveType: WaveType.liquidReveal,
         positionSlideIcon: 0.5,
