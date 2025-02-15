@@ -8,19 +8,22 @@ class MyHomePage extends StatelessWidget {
     Container(
       color: Colors.blue,
       child: Center(
-        child: Text("Page 1", style: TextStyle(fontSize: 24, color: Colors.white)),
+        child:
+            Text("Page 1", style: TextStyle(fontSize: 24, color: Colors.white)),
       ),
     ),
     Container(
       color: Colors.red,
       child: Center(
-        child: Text("Page 2", style: TextStyle(fontSize: 24, color: Colors.white)),
+        child:
+            Text("Page 2", style: TextStyle(fontSize: 24, color: Colors.white)),
       ),
     ),
     Container(
       color: Colors.green,
       child: Center(
-        child: Text("Page 3", style: TextStyle(fontSize: 24, color: Colors.white)),
+        child:
+            Text("Page 3", style: TextStyle(fontSize: 24, color: Colors.white)),
       ),
     ),
   ];
@@ -31,8 +34,10 @@ class MyHomePage extends StatelessWidget {
       body: LiquidSwipe(
         pages: pages,
         enableLoop: true,
+        fullTransitionValue: 800,
         slideIconWidget: Icon(Icons.arrow_back_ios, color: Colors.white),
         waveType: WaveType.liquidReveal,
+        positionSlideIcon: 0.5,
       ),
     );
   }
