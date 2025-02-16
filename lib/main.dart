@@ -145,7 +145,7 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
               }).toList(),
               fullTransitionValue: 400,
               enableLoop: true,
-              waveType: WaveType.circularReveal,
+              waveType: WaveType.liquidReveal,
               enableSideReveal: true,
             ),
     );
