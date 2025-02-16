@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:liquid_swipe_tutorial/services/wallapaer.dart';
-
 
 void main() {
   runApp(WallpaperApp());
@@ -47,7 +45,8 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: wallpapers.isEmpty
-          ? Center(child: CircularProgressIndicator()) // Show loader while fetching
+          ? Center(
+              child: CircularProgressIndicator()) // Show loader while fetching
           : LiquidSwipe(
               pages: wallpapers.map((url) {
                 return Container(
