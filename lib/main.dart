@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:liquid_swipe_tutorial/pages/sidebar.dart';
 import 'package:liquid_swipe_tutorial/services/wallapaer.dart';
-// import 'package:liquid_swipe_tutorial/pages/sidebar.dart'; // Import Sidebar
 
 void main() {
   runApp(WallpaperApp());
@@ -44,15 +43,14 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
     }
   }
 
+  void searchWallpapers(String query) {
+    // Implement your search logic here
+    print("Searching for: $query");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Wallpaper App",
-        ),
-        backgroundColor: Colors.black,
-      ),
       drawer: Sidebar(onCategorySelected: (category) {
         fetchWallpapers(); // Call wallpaper fetch when category selected
       }),
@@ -104,7 +102,7 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
                       ),
                     ),
 
-                    // Floating Action Buttons (Set Wallpaper & Download)
+                    // Floating Action Buttons (Set Wallpaper, Download, Search)
                     Positioned(
                       bottom: 40,
                       right: 20,
@@ -125,6 +123,14 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
                             backgroundColor: Colors.green,
                             child: Icon(Icons.download, color: Colors.white),
                           ),
+                          SizedBox(width: 15),
+                          FloatingActionButton(
+                            onPressed: () {
+                              // Implement "Search Wallpaper"
+                            },
+                            backgroundColor: Colors.orange,
+                            child: Icon(Icons.search, color: Colors.white),
+                          ),
                         ],
                       ),
                     ),
@@ -136,6 +142,49 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
               waveType: WaveType.circularReveal,
               enableSideReveal: true,
             ),
+    );
+  }
+}
+
+class WallpaperSearchDelegate extends SearchDelegate {
+  final Function(String) onSearch;
+
+  WallpaperSearchDelegate({required this.onSearch});
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    onSearch(query);
+    return Center(
+      child: Text("Search results for '$query'"),
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return Center(
+      child: Text("Search wallpapers"),
     );
   }
 }
