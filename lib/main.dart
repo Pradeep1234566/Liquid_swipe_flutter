@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:liquid_swipe_tutorial/pages/sidebar.dart';
 import 'package:liquid_swipe_tutorial/services/wallapaer.dart';
+// import 'package:liquid_swipe_tutorial/pages/sidebar.dart'; // Import Sidebar
 
 void main() {
   runApp(WallpaperApp());
@@ -45,6 +47,15 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Wallpaper App",
+        ),
+        backgroundColor: Colors.black,
+      ),
+      drawer: Sidebar(onCategorySelected: (category) {
+        fetchWallpapers(); // Call wallpaper fetch when category selected
+      }),
       body: wallpapers.isEmpty
           ? Center(child: CircularProgressIndicator())
           : LiquidSwipe(
