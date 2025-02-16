@@ -127,6 +127,12 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
                           FloatingActionButton(
                             onPressed: () {
                               // Implement "Search Wallpaper"
+                              showSearch(
+                                context: context,
+                                delegate: WallpaperSearchDelegate(
+                                  onSearch: searchWallpapers,
+                                ),
+                              );
                             },
                             backgroundColor: Colors.orange,
                             child: Icon(Icons.search, color: Colors.white),

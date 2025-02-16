@@ -27,4 +27,6 @@ class WallpaperService {
       throw Exception("Failed to fetch wallpapers");
     }
   }
+
+  static searchWallpapers(String query) {}
 }
