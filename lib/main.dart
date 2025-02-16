@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:liquid_swipe_tutorial/pages/sidebar.dart';
+import 'package:liquid_swipe_tutorial/services/download.dart';
 import 'package:liquid_swipe_tutorial/services/wallapaer.dart';
 
 void main() {
@@ -117,9 +118,8 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
                           ),
                           SizedBox(width: 15),
                           FloatingActionButton(
-                            onPressed: () {
-                              // Implement "Download Wallpaper"
-                            },
+                            onPressed: () => downloadWallpaper(
+                                "https://example.com/wallpaper.jpg", context),
                             backgroundColor: Colors.green,
                             child: Icon(Icons.download, color: Colors.white),
                           ),
@@ -143,10 +143,10 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
                   ],
                 );
               }).toList(),
-              fullTransitionValue: 400,
+              fullTransitionValue: 900,
               enableLoop: true,
               waveType: WaveType.liquidReveal,
-              enableSideReveal: true,
+              // enableSideReveal: true,
             ),
     );
   }
