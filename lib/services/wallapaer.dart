@@ -2,28 +2,29 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class WallpaperService {
-  static const String _apiKey = "Ah2GhDTknMmeb4Xll7XrDvWh4rXJHv5iLhHK8WR9rOoJhFKwa3eUxnlE";  // Replace with your new API key
-  static const String _baseUrl = "https://api.pexels.com/v1/search?query=wallpapers";
+  static const String apiKey = "Ah2GhDTknMmeb4Xll7XrDvWh4rXJHv5iLhHK8WR9rOoJhFKwa3eUxnlE";
+  static const String apiUrl = "https://api.pexels.com/v1/curated?per_page=20";
 
-  static Future<List<String>> fetchWallpapers() async {
+  static Future<List<Map<String, String>>> fetchWallpapers() async {
     final response = await http.get(
-      Uri.parse(_baseUrl),
-      headers: {
-        "Authorization": _apiKey,
-      },
+      Uri.parse(apiUrl),
+      headers: {"Authorization": apiKey},
     );
 
     if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      List<String> imageUrls = [];
+      final data = jsonDecode(response.body);
+      List<Map<String, String>> wallpapers = [];
 
-      for (var photo in data['photos']) {
-        imageUrls.add(photo['src']['portrait']); // Get portrait image URLs
+      for (var photo in data["photos"]) {
+        wallpapers.add({
+          "imageUrl": photo["src"]["portrait"],
+          "photographer": photo["photographer"],
+        });
       }
 
-      return imageUrls;
+      return wallpapers;
     } else {
-      throw Exception("Failed to load wallpapers");
+      throw Exception("Failed to fetch wallpapers");
     }
   }
 }
